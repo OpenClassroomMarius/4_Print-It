@@ -21,10 +21,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const arrowLeftElement = document.querySelector('.arrow_left');
 	const arrowRightElement = document.querySelector('.arrow_right');
 	const dotsContainer = document.querySelector('.dots');
+	const bannerText = document.querySelector('.banner-text');
 	const bannerImg = document.querySelector('.banner-img');
 	var currentSlide = 0;
 
-	if (bannerImg) {
+	if (bannerImg && bannerText) {
 		if (arrowLeftElement) {
 			arrowLeftElement.addEventListener('click', () => {
 				if (currentSlide === 0) {
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 					currentSlide = currentSlide - 1;
 				}
 				bannerImg.src = `assets/images/slideshow/${slides[currentSlide].image}`;
+				bannerText.innerHTML = slides[currentSlide].tagLine;
 				console.log('arrow_left element was clicked');
 			});
 		}
@@ -44,6 +46,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 					currentSlide = currentSlide + 1;
 				}
 				bannerImg.src = `assets/images/slideshow/${slides[currentSlide].image}`;
+				bannerText.innerHTML = slides[currentSlide].tagLine;
 				console.log('arrow_right element was clicked');
 			});
 		}
@@ -59,6 +62,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 			}
 		}
 	} else {
-		console.error('banner-img element not found');
+		console.error('banner-img or banner-text element not found');
 	}
 });
