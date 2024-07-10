@@ -20,11 +20,7 @@ const slides = [
 document.addEventListener('DOMContentLoaded', (event) => {
     const arrowLeftElement = document.querySelector('.arrow_left');
 	const arrowRightElement = document.querySelector('.arrow_right');
-	const firstDot = document.querySelector('.first_dot');
-	const secondDot = document.querySelector('.second_dot');
-	const thirdDot = document.querySelector('.third_dot');
-	const fourthDot = document.querySelector('.fourth_dot');
-
+	const dotsContainer = document.querySelector('.dots');
 
     if (arrowLeftElement) {
         arrowLeftElement.addEventListener('click', () => {
@@ -36,24 +32,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
 			console.log('arrow_right element was clicked');
 		});
 	}
-	if (firstDot) {
-		firstDot.addEventListener('click', () => {
-			console.log('first_dot element was clicked');
-		});
-	}
-	if (secondDot) {
-		secondDot.addEventListener('click', () => {
-			console.log('second_dot element was clicked');
-		});
-	}
-	if (thirdDot) {
-		thirdDot.addEventListener('click', () => {
-			console.log('third_dot element was clicked');
-		});
-	}
-	if (fourthDot) {
-		fourthDot.addEventListener('click', () => {
-			console.log('fourth_dot element was clicked');
-		});
+	if (dotsContainer) {
+		for (let i = 0; i < slides.length; i++) {
+			const newDot = document.createElement('div');
+			if (i === 0) {
+				newDot.classList.add('dot', 'cursor-pointer', `dot-${i}`, 'dot_selected');
+			} else {
+				newDot.classList.add('dot', 'cursor-pointer', `dot-${i}`);
+			}
+            dotsContainer.appendChild(newDot);
+        }
 	}
 });
