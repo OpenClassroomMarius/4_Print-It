@@ -21,26 +21,44 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const arrowLeftElement = document.querySelector('.arrow_left');
 	const arrowRightElement = document.querySelector('.arrow_right');
 	const dotsContainer = document.querySelector('.dots');
+	const bannerImg = document.querySelector('.banner-img');
+	var currentSlide = 0;
 
-    if (arrowLeftElement) {
-        arrowLeftElement.addEventListener('click', () => {
-            console.log('arrow_left element was clicked');
-        });
-    }
-	if (arrowRightElement) {
-		arrowRightElement.addEventListener('click', () => {
-			console.log('arrow_right element was clicked');
-		});
-	}
-	if (dotsContainer) {
-		for (let i = 0; i < slides.length; i++) {
-			const newDot = document.createElement('div');
-			if (i === 0) {
-				newDot.classList.add('dot', 'cursor-pointer', `dot-${i}`, 'dot_selected');
-			} else {
-				newDot.classList.add('dot', 'cursor-pointer', `dot-${i}`);
+	if (bannerImg) {
+		if (arrowLeftElement) {
+			arrowLeftElement.addEventListener('click', () => {
+				if (currentSlide === 0) {
+					currentSlide = 3;
+				} else {
+					currentSlide = currentSlide - 1;
+				}
+				bannerImg.src = `assets/images/slideshow/${slides[currentSlide].image}`;
+				console.log('arrow_left element was clicked');
+			});
+		}
+		if (arrowRightElement) {
+			arrowRightElement.addEventListener('click', () => {
+				if (currentSlide === 3) {
+					currentSlide = 0;
+				} else {
+					currentSlide = currentSlide + 1;
+				}
+				bannerImg.src = `assets/images/slideshow/${slides[currentSlide].image}`;
+				console.log('arrow_right element was clicked');
+			});
+		}
+		if (dotsContainer) {
+			for (let i = 0; i < slides.length; i++) {
+				const newDot = document.createElement('div');
+				if (i === 0) {
+					newDot.classList.add('dot', 'cursor-pointer', `dot-${i}`, 'dot_selected');
+				} else {
+					newDot.classList.add('dot', 'cursor-pointer', `dot-${i}`);
+				}
+				dotsContainer.appendChild(newDot);
 			}
-            dotsContainer.appendChild(newDot);
-        }
+		}
+	} else {
+		console.error('banner-img element not found');
 	}
 });
