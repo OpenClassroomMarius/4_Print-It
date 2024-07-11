@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 				console.log('arrow_left element was clicked');
 			});
 		}
-
 		if (arrowRightElement) {
 			arrowRightElement.addEventListener('click', () => {
 				if (currentSlide === slides.length - 1) {
@@ -66,7 +65,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 				console.log('arrow_right element was clicked');
 			});
 		}
-
 		if (dotsContainer) {
 			for (let i = 0; i < slides.length; i++) {
 				const newDot = document.createElement('div');
@@ -77,13 +75,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
 				newDot.addEventListener('click', () => {
 					currentSlide = i;
 					updateSlide();
-					console.log(`dot ${i + 1} was clicked`);
 				});
 				dotsContainer.appendChild(newDot);
 			}
 		}
-
-		updateSlide();
 	} else {
 		console.error('banner-img or banner-text element not found');
 	}
